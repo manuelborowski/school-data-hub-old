@@ -1,10 +1,23 @@
 <script lang="ts">
-	export let name: string;
+	import Navbar from "../components/Navbar.svelte"
+
+	const navbar_event = event => {
+		console.log("In App.svelte: ", event.detail)
+	}
+
+	let menu = [
+		{type: "item", name: "manuel link 1"},
+		{type: "item", name: "manuel link 2"},
+		{type: "menu", name: "manuel menu 3", menu : [
+				{type: "item", name: "manuel link 3-1"},
+				{type: "item", name: "manuel link 3-2"},
+			]},
+	];
+
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<Navbar content="test" menu_list={menu} on:navbar={navbar_event}/>
 </main>
 
 <style>
@@ -15,12 +28,12 @@
 		margin: 0 auto;
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+	/*h1 {*/
+	/*	color: #ff3e00;*/
+	/*	text-transform: uppercase;*/
+	/*	font-size: 4em;*/
+	/*	font-weight: 100;*/
+	/*}*/
 
 	@media (min-width: 640px) {
 		main {
